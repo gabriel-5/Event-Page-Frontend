@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from './Login'
 import Dashboard from './Dashboard';
 import { ApiClient } from './apiClient';
 
@@ -7,30 +6,15 @@ import { ApiClient } from './apiClient';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      token: window.localStorage.getItem("token")
-    }
-    this.client = new ApiClient(() => this.state.token, () => this.logout())
+    this.client = new ApiClient()
   }
-
-  login(token) {
-    window.localStorage.setItem("token", token)
-    this.setState({ token })
-  }
-
-  logout() {
-    window.localStorage.removeItem("token")
-    this.setState({ token: undefined })
-  }
-
 
   render() {
-    if (this.state.token) {
-      console.log("dashboard")
-      return <Dashboard client={this.client}/>
-    }
-    console.log("login")
-    return <Login loggedIn={(token) => this.login(token)} client={this.client}/>
+      return( 
+      <>
+      <Dashboard client={this.client}/>
+      </>
+      )
   }
 }
 
