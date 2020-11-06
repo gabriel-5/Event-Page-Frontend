@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
 
   removeAdvert(id){
     this.props.client.removeAd(id)
-    .then(this.refreshList())
+    .then(()=> this.refreshList())
   }
 
   updateAdvert(ad){
