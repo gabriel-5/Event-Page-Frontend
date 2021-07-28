@@ -1,21 +1,15 @@
-import React from 'react';
-import Dashboard from './Dashboard';
-import { ApiClient } from './apiClient';
+import React from "react";
+import Dashboard from "./Dashboard";
+import { ApiClient } from "./apiClient";
 
+function App() {
+  const client = new ApiClient();
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.client = new ApiClient()
-  }
-
-  render() {
-      return( 
-      <>
-      <Dashboard client={this.client}/>
-      </>
-      )
-  }
+  return (
+    <>
+      <Dashboard client={client} />
+    </>
+  );
 }
 
 export default App;
