@@ -16,7 +16,6 @@ function Add(props) {
     } else {
       result = props.client.addAd(e.target.adName.value, e.target.price.value);
     }
-    console.log(result);
     result
       .then(() => {
         cDisabled(false);
@@ -24,7 +23,6 @@ function Add(props) {
         props.refreshList();
       })
       .catch(() => {
-        console.log("catch");
         alert("an error occured, please try again");
         cDisabled(false);
       });
