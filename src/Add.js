@@ -7,47 +7,75 @@ function Add(props) {
     e.preventDefault();
     cDisabled(true);
     let result;
-    if (props.currentAd) {
-      result = props.client.updateAd(
-        props.currentAd._id,
-        e.target.adName.value,
-        e.target.price.value
+    if (props.currentEvent) {
+      result = props.client.updateEvent(
+        props.currentEvent._id,
+        e.target.eventName.value,
+        e.target.eventLocation.value,
+        e.target.eventInformation.value,
+        e.target.eventDate.value
       );
     } else {
-      result = props.client.addAd(e.target.adName.value, e.target.price.value);
+      result = props.client.addEvent(
+        e.target.eventName.value,
+        e.target.eventLocation.value,
+        e.target.eventInformation.value,
+        e.target.eventDate.value
+      );
     }
+
     result
       .then(() => {
         cDisabled(false);
         document.getElementById("addForm").reset();
         props.refreshList();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         alert("an error occured, please try again");
+
         cDisabled(false);
       });
   };
 
   return (
     <>
-      {props.currentAd ? "Update" : "Add"}
+      {props.currentEvent ? "Update" : "Add"}
       <br />
 
       <form onSubmit={(e) => submitHandler(e)} id="addForm">
         Name: <br />
         <input
           type="text"
-          defaultValue={props.currentAd?.name}
-          name="adName"
+          defaultValue={props.currentEvent?.name}
+          name="eventName"
           disabled={disabled}
         />
         <br />
-        Price:
+        Location:
         <br />
         <input
           type="text"
-          defaultValue={props.currentAd?.price}
-          name="price"
+          defaultValue={props.currentEvent?.location}
+          name="eventLocation"
+          disabled={disabled}
+        />
+        <br />
+        Information:
+        <br />
+        <input
+          type="text"
+          defaultValue={props.currentEvent?.information}
+          name="eventInformation"
+          disabled={disabled}
+        />
+        <br />
+        Date:
+        <br />
+        <input
+          type="text"
+          defaultValue={props.currentEvent?.date}
+          name="eventDate"
           disabled={disabled}
         />
         <br />

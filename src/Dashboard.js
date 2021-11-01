@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import Add from "./Add";
 
 function Dashboard(props) {
-  const [ads, cAds] = useState([]);
+  const [events, cEvents] = useState([]);
   const [current, cCurrent] = useState(undefined);
 
   const refreshList = () => {
-    props.client.getAds().then((response) => cAds(response.data));
+    props.client.getEvents().then((response) => cEvents(response.data));
   };
 
-  const removeAdvert = (id) => {
-    props.client.removeAd(id).then(() => refreshList());
+  const removeEvent = (id) => {
+    props.client.removeEvent(id).then(() => refreshList());
   };
 
-  const updateAdvert = (ad) => {
-    cCurrent(ad);
+  const updateEvent = (event) => {
+    cCurrent(event);
   };
 
   useEffect(() => {
@@ -22,14 +22,16 @@ function Dashboard(props) {
   }, []);
 
   const buildrows = () => {
-    return ads.map((current) => {
+    return events.map((current) => {
       return (
         <tr key={current._id}>
           <td>{current.name}</td>
-          <td>£{current.price}</td>
+          <td>£{current.location}</td>
+          <td>£{current.information}</td>
+          <td>£{current.date}</td>
           <td>
-            <button onClick={() => removeAdvert(current._id)}> remove</button>
-            <button onClick={() => updateAdvert(current)}> update</button>
+            <button onClick={() => removeEvent(current._id)}> Remove</button>
+            <button onClick={() => updateEvent(current)}> Update</button>
           </td>
         </tr>
       );
@@ -43,8 +45,10 @@ function Dashboard(props) {
       <table>
         <thead>
           <tr>
-            <th>Advert Name</th>
-            <th>Price</th>
+            <th>Event Name</th>
+            <th>Location</th>
+            <th>Information</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>{buildrows()}</tbody>
@@ -57,7 +61,7 @@ function Dashboard(props) {
           refreshList();
           cCurrent(undefined);
         }}
-        currentAd={current}
+        currentEvent={current}
       />
     </>
   );

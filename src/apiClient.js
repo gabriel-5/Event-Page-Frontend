@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
+const url = "http://localhost:3001";
 
 export class ApiClient {
   apiCall(method, url, data) {
@@ -12,19 +12,29 @@ export class ApiClient {
     });
   }
 
-  getAds() {
-    return this.apiCall("get", url);
+  getEvents() {
+    return this.apiCall("get", url + "/event/");
   }
 
-  addAd(name, price) {
-    return this.apiCall("post", url, { name, price });
+  addEvent(name, location, information, date) {
+    return this.apiCall("post", url + "/event/", {
+      name,
+      location,
+      information,
+      date,
+    });
   }
 
-  removeAd(id) {
-    return this.apiCall("delete", `${url}${id}`);
+  removeEvent(id) {
+    return this.apiCall("delete", `${url}${"/events/"}${id}`);
   }
 
-  updateAd(id, name, price) {
-    return this.apiCall("put", `${url}${id}`, { name, price });
+  updateEvent(id, name, location, information, date) {
+    return this.apiCall("put", `${url}${"/events/"}${id}`, {
+      name,
+      location,
+      information,
+      date,
+    });
   }
 }
