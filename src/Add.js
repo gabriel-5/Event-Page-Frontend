@@ -40,47 +40,53 @@ function Add(props) {
 
   return (
     <>
-      {props.currentEvent ? "Update" : "Add"}
       <br />
 
       <form onSubmit={(e) => submitHandler(e)} id="addForm">
-        Name: <br />
-        <input
-          type="text"
-          defaultValue={props.currentEvent?.name}
-          name="eventName"
-          disabled={disabled}
-        />
-        <br />
-        Location:
         <br />
         <input
-          type="text"
-          defaultValue={props.currentEvent?.location}
-          name="eventLocation"
-          disabled={disabled}
-        />
-        <br />
-        Information:
-        <br />
-        <input
-          type="text"
-          defaultValue={props.currentEvent?.information}
-          name="eventInformation"
-          disabled={disabled}
-        />
-        <br />
-        Date:
-        <br />
-        <input
-          type="text"
+          className="date"
+          type="date"
           defaultValue={props.currentEvent?.date}
           name="eventDate"
           disabled={disabled}
+          required
+        />
+        <br /> <br />
+        <textarea
+          rows="1"
+          cols="25"
+          defaultValue={props.currentEvent?.name}
+          placeholder="event"
+          name="eventName"
+          disabled={disabled}
+          required
         />
         <br />
         <br />
-        <button type="submit" disabled={disabled}>
+        <textarea
+          rows="1"
+          cols="50"
+          defaultValue={props.currentEvent?.location}
+          placeholder="city"
+          name="eventLocation"
+          disabled={disabled}
+          required
+        />
+        <br />
+        <br />
+        <textarea
+          rows="1"
+          cols="75"
+          defaultValue={props.currentEvent?.information}
+          placeholder="location"
+          name="eventInformation"
+          disabled={disabled}
+          required
+        />
+        <br />
+        <br />
+        <button className="submit-button" type="submit" disabled={disabled}>
           {" "}
           Submit{" "}
         </button>

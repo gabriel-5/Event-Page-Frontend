@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Dashboard from "./Dashboard";
 import { ApiClient } from "./apiClient";
+import Login from "./Login";
 
 function App() {
-  const client = new ApiClient();
+  const [token, changeToken] = useState(window.localStorage.getItem("token"));
+
+  const client = new ApiClient(token, () => logout());
+
+  const login = (newToken) => {
+    window.localStorage.setItem("token", newToken);
+    changeToken(newToken);
+  };
+
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    changeToken(undefined);
+  };
 
   return (
     <>
-      <Dashboard client={client} />
+      {token ? (
+        <Dashboard client={client} />
+      ) : (
+        <Login loggedIn={(token) => login(token)} client={client} />
+      )}
     </>
   );
 }

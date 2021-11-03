@@ -6,7 +6,10 @@ function Dashboard(props) {
   const [current, cCurrent] = useState(undefined);
 
   const refreshList = () => {
-    props.client.getEvents().then((response) => cEvents(response.data));
+    props.client.getEvents().then((response) => {
+      console.log(response.data);
+      cEvents(response.data);
+    });
   };
 
   const removeEvent = (id) => {
@@ -26,13 +29,21 @@ function Dashboard(props) {
       return (
         <tr key={current._id}>
           <td>{current.name}</td>
-          <td>£{current.location}</td>
-          <td>£{current.information}</td>
-          <td>£{current.date}</td>
-          <td>
-            <button onClick={() => removeEvent(current._id)}> Remove</button>
-            <button onClick={() => updateEvent(current)}> Update</button>
+          <td>{current.location}</td>
+          <td>{current.information}</td>
+          <td>{current.date}</td>
+          <td
+            className="events-buttons"
+            onClick={() => removeEvent(current._id)}
+          >
+            remove
           </td>
+          <td className="events-buttons" onClick={() => updateEvent(current)}>
+            change listing details
+          </td>
+
+          <br />
+          <br />
         </tr>
       );
     });
@@ -40,29 +51,34 @@ function Dashboard(props) {
 
   return (
     <>
-      Dashboard
-      <br />
-      <table>
-        <thead>
-          <tr>
-            <th>Event Name</th>
-            <th>Location</th>
-            <th>Information</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>{buildrows()}</tbody>
-      </table>
-      <br />
-      <br />
-      <Add
-        client={props.client}
-        refreshList={() => {
-          refreshList();
-          cCurrent(undefined);
-        }}
-        currentEvent={current}
-      />
+      <div className="title">— — — — — — — — — — — — — — — — —</div>
+      <div className="title">— — — — — — — — — — </div>
+      <div className="title"> — — — — — </div>
+      <div className="container">
+        <div className="add-event-form">
+          <Add
+            client={props.client}
+            refreshList={() => {
+              refreshList();
+              cCurrent(undefined);
+            }}
+            currentEvent={current}
+          />
+        </div>
+        <div className="event-list">
+          <table>
+            <thead></thead>
+            <tbody>{buildrows()}</tbody>
+          </table>
+        </div>
+        <br />
+        <br />
+      </div>
+      <div className="footer-container">
+        <div className="title"> — — — — — </div>
+        <div className="title">— — — — — — — — — — </div>
+        <div className="title">— — — — — — — — — — — — — — — — —</div>
+      </div>
     </>
   );
 }
