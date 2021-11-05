@@ -24,23 +24,36 @@ function Login(props) {
 
   return (
     <>
-      Login
-      <br />
-      <form onSubmit={(e) => submitHandler(e)}>
-        username
+      <div className="login-container">
         <br />
-        <input type="text" name="username" disabled={disabled} />
-        <br />
-        password
-        <br />
-        <input type="password" name="password" disabled={disabled} />
-        <br />
-        <br />
-        <button type="submit" disabled={disabled}>
-          {" "}
-          Submit{" "}
-        </button>
-      </form>
+        <form onSubmit={(e) => submitHandler(e)}>
+          <br />
+          <input
+            className="login-input"
+            type="text"
+            name="username"
+            placeholder="user"
+            disabled={disabled}
+          />
+          <br />
+
+          <br />
+          <input
+            className="login-input"
+            type="password"
+            name="password"
+            placeholder="pw"
+            disabled={disabled}
+          />
+          <br />
+          <br />
+          <button type="submit" disabled={disabled}>
+            {" "}
+            Submit{" "}
+          </button>
+        </form>
+        <p>email t2955330 at gmail dot com to request access</p>
+      </div>
     </>
   );
 }

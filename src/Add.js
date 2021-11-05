@@ -17,10 +17,10 @@ function Add(props) {
       );
     } else {
       result = props.client.addEvent(
-        e.target.eventName.value,
-        e.target.eventLocation.value,
-        e.target.eventInformation.value,
-        e.target.eventDate.value
+        e.target.eventName.value(),
+        e.target.eventLocation.value(),
+        e.target.eventInformation.value(),
+        e.target.eventDate.value()
       );
     }
 
@@ -40,10 +40,11 @@ function Add(props) {
 
   return (
     <>
-      <br />
-
-      <form onSubmit={(e) => submitHandler(e)} id="addForm">
-        <br />
+      <form
+        className="add-form"
+        onSubmit={(e) => submitHandler(e)}
+        id="addForm"
+      >
         <input
           className="date"
           type="date"
@@ -79,7 +80,7 @@ function Add(props) {
           rows="1"
           cols="75"
           defaultValue={props.currentEvent?.information}
-          placeholder="location"
+          placeholder="exact location"
           name="eventInformation"
           disabled={disabled}
           required
@@ -88,7 +89,7 @@ function Add(props) {
         <br />
         <button className="submit-button" type="submit" disabled={disabled}>
           {" "}
-          Submit{" "}
+          Submit?{" "}
         </button>
       </form>
     </>

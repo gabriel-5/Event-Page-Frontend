@@ -2,6 +2,7 @@ body {
   background-color: #c8dfeb;
   font-family: BluuNext;
   color: #be3812;
+  font-size: 1.2em;
 }
 
 @font-face {
@@ -46,6 +47,7 @@ td {
 .events-buttons {
   background-color: rosybrown;
   cursor: cell;
+  user-select: none;
 }
 
 .title {
@@ -56,4 +58,33 @@ td {
 
 .footer-container {
   padding-top: 16px;
+}
+
+.spiral {
+  width: 20px;
+}
+
+.add-form {
+  margin-top: 35px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.logout-button {
+  background-color: rosybrown;
+  cursor: cell;
+  user-select: none;
+  padding: 8px;
+}
+
+.login-input {
+  width: 300px;
 }
