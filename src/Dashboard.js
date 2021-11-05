@@ -34,7 +34,9 @@ function Dashboard(props) {
           <td>{current.date}</td>
           <td
             className="events-buttons"
-            onClick={() => removeEvent(current._id)}
+            onClick={() => {
+              removeEvent(current._id);
+            }}
           >
             remove
           </td>
